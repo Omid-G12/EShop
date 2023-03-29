@@ -1,8 +1,10 @@
-import { makeStyles, fade } from 'tss-react/mui';
+import { makeStyles } from 'tss-react/mui';
+// import { Fade } from '@mui/material';
+import { alpha } from '@mui/material/styles'
 
 const drawerWidth = 0;
 
-export default makeStyles((theme) => ({
+export default makeStyles()((theme) => ({
   appBar: {
     boxShadow: 'none',
     borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
@@ -32,9 +34,9 @@ export default makeStyles((theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
