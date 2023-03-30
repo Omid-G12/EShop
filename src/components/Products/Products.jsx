@@ -4,14 +4,9 @@ import Grid from '@mui/material/Grid';
 import Product from './Product/Product';
 import useStyles from './styles'
 
-const products = [
-  { id: 1, name: 'Shoes', description: 'Running shoes.', price: '$5', image: 'https://fgl.scene7.com/is/image/FGLSportsLtd/FGL_332665524_10_a?bgColor=0,0,0,0&resMode=sharp2&op_sharpen=1&hei=520'},
-  { id: 2, name: 'MacBook', description: 'Apple macbook.', price: '$10', image: 'https://m.media-amazon.com/images/I/51GB2CTc9vL._AC_SX522_.jpg'}
-];
-
-const Products = () => {
+const Products = ({products}) => {
   const {classes} = useStyles();
-  
+
   return (
     <main className={classes.content}>
       <div className={classes.toolbar}/>
