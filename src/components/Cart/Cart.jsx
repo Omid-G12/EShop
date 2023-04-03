@@ -3,15 +3,15 @@ import { Container, Typography, Button, Grid } from '@mui/material';
 
 import useStyles from './styles';
 import CartItem from './CartItem/CartItem';
+import { Link } from 'react-router-dom';
 
 const Cart = ({cart}) => {
-  // const isEmpty = !cart.line_items.length;
-  // const isEmpty = cart.line_items.length === 0 ? true : false;
-  // const isEmpty = false;
   const {classes} = useStyles();
 
   const EmptyCart = () => (
-    <Typography variant='subtitle1'>You have no items in your shopping cart, start adding some!</Typography>
+    <Typography variant='subtitle1' >You have no items in your shopping cart,
+      <Link to='/' className={classes.link}>start adding some</Link>!
+    </Typography>
   );
 
   const FilledCart = () => (
