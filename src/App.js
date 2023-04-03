@@ -19,8 +19,21 @@ const App = () => {
 
   const handleAddToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity)
-    // console.log("item:")
-    // console.log(item)
+    setCart(item);
+  }
+
+  const handleUpdateCartQty = async(productId, quantity) => {
+    const item = await commerce.cart.update(productId, {quantity});
+    setCart(item)
+  }
+
+  const handleRemoveFromCart = async (productId) => {
+    const item = await commerce.cart.remove(productId);
+    setCart(item);
+  }
+
+  const handleEmptyCart = async() => {
+    const item = await commerce.cart.empty();
     setCart(item);
   }
 
@@ -29,8 +42,7 @@ const App = () => {
     fetchCart();
   }, [])
 
-  // console.log("cart:")
-  // console.log(cart);
+  
 
   return (
     <Router>
@@ -38,7 +50,7 @@ const App = () => {
         <Navbar totalItems={cart.total_items}/>
         <Routes>
           <Route path='/' element={<Products products = {products} onAddToCart = {handleAddToCart}/>} />
-          <Route path='/cart' element={<Cart cart={cart} />} />
+          <Route path='/cart' element={<Cart cart={cart} handleEmptyCart={handleEmptyCart} handleRemoveFromCart={handleRemoveFromCart} handleUpdateCartQty={handleUpdateCartQty}/>} />
         </Routes>
       </div>
     </Router>
