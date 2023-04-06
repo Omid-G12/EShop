@@ -12,7 +12,7 @@ const AddressForm = () => {
 
       <FormProvider {...methods}>
         <form onSubmit=''>
-          <Grid container spacing={3}>
+          <Grid container justifyContent={'space-evenly'}>
             <FormInput required name='firstName' label='First name' />
             <FormInput required name='lastName' label='Last name' />
             <FormInput required name='address1' label='Address' />
