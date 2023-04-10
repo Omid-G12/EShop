@@ -8,7 +8,7 @@ const FormInput = ({name, label, required}) => {
 
   return (
     <div>
-      <Grid item width={270}/*xs={12} sm={6}*/>
+      <Grid item minWidth={270} /*width={270}*/>
         <Controller
           control={control}
           name={name}
