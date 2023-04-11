@@ -14,6 +14,7 @@ const FormInput = ({name, label}) => {
           name={name}
           render = {({field}) => (
             <TextField
+              {...field}
               fullWidth
               label={label}
               required

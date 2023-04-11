@@ -4,9 +4,9 @@ import { Elements, CardElement, ElementsConsumer } from '@stripe/react-stripe-js
 import { loadStripe } from '@stripe/stripe-js';
 import Review from './Review';
 
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY)
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({checkoutToken, backStep, shippingData, onCaptureCheckout, nextStep}) => {
+const PaymentForm = ({checkoutToken, nextStep , backStep, shippingData, onCaptureCheckout}) => {
   const handleSubmit = async (event, elements, stripe) => {
     event.preventDefault();
 
@@ -23,9 +23,11 @@ const PaymentForm = ({checkoutToken, backStep, shippingData, onCaptureCheckout, 
         line_items: checkoutToken.line_items,
         customer: {firstname: shippingData.firstName, lastname: shippingData.lastName, email: shippingData.email},
         shipping: {name: 'Primary', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry},
+        billing: {name: 'Primary', street: shippingData.address1, town_city: shippingData.city, county_state: shippingData.shippingSubdivision, postal_zip_code: shippingData.zip, country: shippingData.shippingCountry},
         fulfillment: {shipping_method: shippingData.shippingOption},
-        payment: {gateway: 'stripe', stripe: {payment_method_id: paymentMethod.id}}
+        payment: {gateway: `stripe`, stripe: {payment_method_id: paymentMethod.id}}
       }
+      console.log(orderData)
       onCaptureCheckout(checkoutToken.id, orderData);
 
       nextStep();
@@ -38,19 +40,22 @@ const PaymentForm = ({checkoutToken, backStep, shippingData, onCaptureCheckout, 
       <Typography variant='h6' gutterBottom style={{margin: '20px 0'}}>Payment method</Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
-          {(elements, stripe) => (
-            <form onSubmit={(e) => handleSubmit(e, elements, stripe)}>
-              <CardElement />
-              <br />
-              <br />
-              <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                <Button variant='outlined' onClick={backStep}>Back</Button>
-                <Button type='submit' variant='contained' disabled={!stripe} color='primary'>
-                  Pay {checkoutToken.subtotal.formatted_with_symbol}
-                </Button>
-              </div>
-            </form>
-          )}
+          {(elements) => {
+            console.log(elements.stripe)
+            return (
+              <form onSubmit={(e) => handleSubmit(e, elements.elements, elements.stripe)}>
+                <CardElement />
+                <br />
+                <br />
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Button variant='outlined' onClick={backStep}>Back</Button>
+                  <Button type='submit' variant='contained'  disabled={!elements.stripe} color='primary'>
+                    Pay {checkoutToken.subtotal.formatted_with_symbol}
+                  </Button>
+                </div>
+              </form>
+            );
+          }}
         </ElementsConsumer>
       </Elements>
     </>
