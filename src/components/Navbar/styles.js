@@ -14,13 +14,16 @@ export default makeStyles()((theme) => ({
     },
     backgroundColor: 'lightgray',
     opacity: 0.95,
+    height: '10%',
+    justifyContent: 'center'
   },
   title: {
     flexGrow: 1,
     alignItems: 'center',
     display: 'flex',
     textDecoration: 'none',
-    fontFamily: 'monospace'
+    fontFamily: 'monospace',
+    fontSize: 30
   },
   image: {
     marginRight: '10px',

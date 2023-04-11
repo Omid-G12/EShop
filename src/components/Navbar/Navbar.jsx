@@ -16,7 +16,7 @@ const Navbar = ({ totalItems }) => {
         <AppBar position='fixed' className={classes.appBar} color='inherit'>
           <Toolbar>
             <Typography component={Link} to="/" variant='h6' className={classes.title} color='inherit'>
-              <img src={logo} alt="E-Shop" height='60px' className={classes.image}/>
+              <img src={logo} alt="E-Shop" height='80px' className={classes.image}/>
               E-Shop
             </Typography>
             <div className={classes.grow} />
@@ -24,7 +24,7 @@ const Navbar = ({ totalItems }) => {
             <div className={classes.button}>
               <IconButton component={Link} to="/cart" aria-label='Show cart items' color='inherit'>
                 <Badge badgeContent={totalItems} color="secondary">
-                  <ShoppingCart />
+                  <ShoppingCart fontSize='large'/>
                 </Badge>
               </IconButton>
             </div> )}
