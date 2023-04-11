@@ -41,7 +41,6 @@ const PaymentForm = ({checkoutToken, nextStep , backStep, shippingData, onCaptur
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
           {(elements) => {
-            console.log(elements.stripe)
             return (
               <form onSubmit={(e) => handleSubmit(e, elements.elements, elements.stripe)}>
                 <CardElement />
